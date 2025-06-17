@@ -18,10 +18,11 @@
         </div>
     @endif
 
-    <form action="{{ route('book.create') }}" method="post">
-        <input type="text" name="title" placeholder="title goes here" value="{{ old('title') }}">
-        <input type="text" name="author" placeholder="author goes here" value="{{ old('author') }}">
-        <input type="date" name="released_at" placeholder="date goes here" value="{{ old('released_at') }}">
+    <form action="{{ route('book.store') }}" method="post">
+        @csrf
+        <input type="text" name="title" placeholder="Title goes here" value="{{ old('title') }}">
+        <input type="text" name="author" placeholder="Author goes here" value="{{ old('author') }}">
+        <input type="date" name="released_at" placeholder="Date goes here" value="{{ old('released_at') }}">
         <input type="submit" value="Create">
     </form>
 </body>

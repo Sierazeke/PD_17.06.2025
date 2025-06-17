@@ -36,7 +36,7 @@ class BookController extends Controller
         return view('books.edit', ['editBook' => $book]);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request, $id) {
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string',
@@ -44,12 +44,13 @@ class BookController extends Controller
         ]);
 
         $book->update();
-
+        
         return redirect()->route('book.show', $book)->with('status', 'Book updated successfully.');
     }
     
-    public function destroy(Book $book) {
+    public function destroy($id) {
+        $book = Book::find($id);
         $book->delete();
-        return redirect()->route('book.index')->with('status', 'Book deleted successfully.');
+        return redirect('/books');
     }
 }
